@@ -2,14 +2,12 @@
 FROM pytorch/pytorch:1.12.0-cuda11.3-cudnn8-devel
 
 # Set args
-ARG REQUIREMENTS_FILE
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Set directory
 WORKDIR /workspace
 
 # Install base utilities
-#RUN rm /etc/apt/sources.list.d/cuda.list
 RUN apt-get update && \
     apt-get install -y apt-utils && \
     apt-get install -y build-essential wget git nano vim ffmpeg libgl1-mesa-glx libglib2.0-0 && \
@@ -17,7 +15,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
-COPY $REQUIREMENTS_FILE /workspace
+COPY tmp_build_requirements.txt /workspace/requirements.txt
 RUN yes | pip install -r /workspace/requirements.txt
 
 # Expose port

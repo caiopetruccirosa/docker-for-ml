@@ -12,7 +12,7 @@ To build the container, execute this command:
 To run the container, execute this command:
 
 ```bash
-./run_container.sh <path_to_notebooks_folder> <path_to_datasets_folder>
+./run_container.sh <abs_path_to_notebooks_folder> <abs_path_to_datasets_folder>
 ```
 
 When running the container remotely, make a SSH tunnel between the `4321` ports:
