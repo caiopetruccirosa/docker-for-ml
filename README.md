@@ -1,4 +1,4 @@
-# remote-docker-for-ml
+# docker-for-ml
 
 The Jupyter Notebook environment is executed inside a Docker container.
 The datasets and notebooks folders are accessed through volume bindings.
