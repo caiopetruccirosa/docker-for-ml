@@ -5,8 +5,14 @@
 # Base images possibilities use CUDA 11.3 or 11.7 and cuDNN 8.0:
 #     pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime (ligher)
 #     nvcr.io/nvidia/pytorch:22.12-py3
-# FROM nvcr.io/nvidia/pytorch:22.12-py3
 FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+
+# ***************************
+#   Directory Configuration
+# ***************************
+
+# Set directory
+WORKDIR /container
 
 # *********************
 #     Env Variables    
@@ -18,7 +24,6 @@ ARG USER_GID=1000
 ARG USER_GNAME=recod
 
 ARG DEBIAN_FRONTEND=noninteractive
-
 
 # **********************
 #   Package Management  
@@ -59,14 +64,14 @@ RUN python -m pip install --upgrade pip setuptools pytest && \
 #   Shell Configuration  
 # ***********************
 
-# Terminal colors with xterm
-ENV TERM=xterm
+# # Terminal colors with xterm
+# ENV TERM=xterm
 
-# Set the zsh theme
-ENV ZSH_THEME=agnoster
+# # Set the zsh theme
+# ENV ZSH_THEME=agnoster
 
-# Run Oh-My-Zsh installation script
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+# # Run Oh-My-Zsh installation script
+# RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 
 
 # **********************

@@ -1,8 +1,27 @@
 #!/bin/bash
 
-echo "requirements.txt file path: $1"
-cp $1 ./tmp_build_requirements.txt
+# define default values
+DEFAULT_IMAGE_TAG="default-env" # could be "age-benchmark-dev", "facial-age-estimation-dev", etc.
+DOCKERFILE="Dockerfile"
 
-docker build --build-arg REQUIREMENTS_FILE=$1 -t cpsrosa-dev .
+# these variables could be passed as environment variables
+IMAGE_TAG=${IMAGE_TAG:-DEFAULT_IMAGE_TAG}
+USERNAME=${USERNAME:-$(id -un)}
+USER_UID=${USER_UID:-$(id -u)}
+USER_GNAME=${USER_GNAME:-$(id -gn)}
+USER_GID=${USER_GID:-$(id -g)}
 
-rm ./tmp_build_requirements.txt
+# define the RAM size
+RAM_SIZE="32g"
+
+# run the build command
+docker build \
+    --rm \
+    --shm-size=$RAM_SIZE \
+    --build-arg USERNAME="$USERNAME" \
+    --build-arg USER_UID="$USER_UID" \
+    --build-arg USER_GID="$USER_GID" \
+    --build-arg USER_GNAME="$USER_GNAME" \
+    -f $DOCKERFILE \
+    -t "$IMAGE_TAG" \
+    .

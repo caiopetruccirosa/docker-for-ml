@@ -5,8 +5,14 @@
 # Base images possibilities use CUDA 11.3 or 11.7 and cuDNN 8.0:
 #     pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime (ligher)
 #     nvcr.io/nvidia/pytorch:22.12-py3
-# FROM nvcr.io/nvidia/pytorch:22.12-py3
 FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+
+# ***************************
+#   Directory Configuration
+# ***************************
+
+# Set directory
+WORKDIR /container
 
 # *********************
 #     Env Variables    
@@ -38,32 +44,32 @@ RUN rm -rf /var/lib/apt/lists/* && \
     apt autoremove && \
     apt clean
 
-# Install miniconda
-#ENV CONDA_DIR /opt/conda
-#RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+# # Install miniconda
+# ENV CONDA_DIR /opt/conda
+# RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
 #    /bin/bash ~/miniconda.sh -b -p /opt/conda
 
 # Put conda in path so we can use conda activate
-#ENV PATH=$CONDA_DIR/bin:$PATH
+ENV PATH=$CONDA_DIR/bin:$PATH
 
 # Create the environment:
 COPY environment.yaml .
 RUN conda env create -f environment.yaml
 
-# Activate the environment and make it the default
-#RUN conda activate age_conda_env
+# # Activate the environment and make it the default
+# RUN conda activate age_conda_env
 
-# System-wide python packages
-#RUN python -m pip install --upgrade pip setuptools pytest && \
-#    python -m pip install jupyterlab ipykernel ipywidgets nbformat \
-#        torchmetrics torchvision torchsummary
+# #  System-wide python packages
+# RUN python -m pip install --upgrade pip setuptools pytest && \
+#     python -m pip install jupyterlab ipykernel ipywidgets nbformat \
+#         torchmetrics torchvision torchsummary
 
 # ***********************
 #   Shell Configuration  
 # ***********************
 
-# Make RUN commands use the new environment:
-#SHELL ["conda", "run", "-n", "age_conda_env", "/bin/bash", "-c"]
+# # Make RUN commands use the new environment:
+# SHELL ["conda", "run", "-n", "age_conda_env", "/bin/bash", "-c"]
 
 # **********************
 #   User Configuration  
@@ -89,3 +95,6 @@ RUN chown -R $USER_UID:$USER_GID /home/$USERNAME
 
 #  Set the default user
 USER $USERNAME
+
+# Set temporary directory
+WORKDIR /container
