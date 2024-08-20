@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # define default values
-DEFAULT_IMAGE_TAG="default-env" # could be "age-benchmark-dev", "facial-age-estimation-dev", etc.
+DEFAULT_IMAGE_TAG="default-env"
 DOCKERFILE="Dockerfile"
 
 # these variables could be passed as environment variables
@@ -17,11 +17,11 @@ RAM_SIZE="32g"
 # run the build command
 docker build \
     --rm \
-    --shm-size=$RAM_SIZE \
+    --shm-size="$RAM_SIZE" \
     --build-arg USERNAME="$USERNAME" \
     --build-arg USER_UID="$USER_UID" \
     --build-arg USER_GID="$USER_GID" \
     --build-arg USER_GNAME="$USER_GNAME" \
-    -f $DOCKERFILE \
+    -f "$DOCKERFILE" \
     -t "$IMAGE_TAG" \
     .
