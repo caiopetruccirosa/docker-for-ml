@@ -1,0 +1,18 @@
+FROM aleosampaio/torch-2.0.1:base
+
+# RUN apt-get update && apt-get -y install sudo
+
+# change it to run as my user
+RUN groupadd -g 1000 recod
+# RUN useradd -r -u 10416 -g recod -G sudo -d /home/leo.ribeiro leo.ribeiro 
+RUN useradd -r -u 10416 -g recod -d /home/leo.ribeiro leo.ribeiro 
+RUN echo 'leo.ribeiro:lribeiro' | chpasswd
+
+# extra stuff that should go into the main Dockerfile later
+RUN apt-get update && apt-get -y install unzip
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+RUN apt-get install git-lfs
+
+USER leo.ribeiro
+
+WORKDIR /home/leo.ribeiro

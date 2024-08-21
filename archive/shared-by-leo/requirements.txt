@@ -1,0 +1,20 @@
+h5py >= 2.9.0
+pillow >= 6.0.0
+pandas >= 0.24.1
+scikit-learn >= 0.19.1
+ipython >= 5.5.0
+matplotlib >= 3.0
+rdp >= 0.8
+svgwrite == 1.1.12
+svglib >= 0.9.2
+numpy >= 1.16.4
+imageio >= 2.0
+scikit-image >= 0.16
+torchvision>=0.15
+dominate>=2.3.1
+flask>=2.0.2
+ipdb>=0.13
+einops>=0.4.1
+imgaug==0.4.0
+wandb>=0.15.3
+timm>=0.9.2

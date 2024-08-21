@@ -1,0 +1,4 @@
+Para buildar:
+sudo docker build --rm -t tutuzeraa:base ./ -f endereco_do_container
+Para rodar:
+docker run --gpus '"device=6,7"' --shm-size=8g -itd -u artur.barros:recod -v /home/artur.barros/:/home/artur.barros/  --name tutuzeraa_dev tutuzeraa:base

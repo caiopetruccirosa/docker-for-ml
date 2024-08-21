@@ -1,0 +1,17 @@
+docker pull $CUR_DOCKER_TAG:leo-edition 
+&& 
+docker run \
+    --name leo-ribeiro-$(hostname)s-torch-whale \
+    --shm-size=16gb \
+    -p 1420:1420 \
+    --hostname $(hostname)s-whale \
+    -d -it --rm \
+    --gpus all \
+    -v /hahomes/:/hahomes/ \
+    -v /home/:/home/ \
+    -v /work/:/work/ 
+    -v /hadatasets/:/hadatasets/ 
+    --userns=host \\
+    --privileged $CUR_DOCKER_TAG:leo-edition zsh
+&& 
+docker attach leo-ribeiro-$(hostname)s-torch-whale
