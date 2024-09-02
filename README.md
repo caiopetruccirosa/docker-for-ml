@@ -8,16 +8,22 @@ The datasets and work directories are accessed through volume bindings.
 
 **TODO:**
 
-<input type="checkbox" />: Modularize Dockerfile descriptions through base images and specific use case images.
+- Analyze other Dockerfiles in `/archive` and see if there is anything I can take advantage of.
 
-<input type="checkbox" />: Remove unnecessary stuff from scripts.
+- Analyze other scripts for building and running in `/archive` and see if there is anything I can take advantage of.
+
+- Add zsh as default shell adn oh-my-zsh to Dockerfile.
+
+- Fix non-root functionality on Dockerfile.
+
+- Remove default values of username, user id, group id and group name on Dockerfile.
 
 ## Commands
 
 To build the container, execute this command:
 
 ```bash
-./build_image.sh
+./scripts/build_image.sh
 ```
 
 To run the container, execute this command:
