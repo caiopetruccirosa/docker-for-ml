@@ -4,6 +4,18 @@
 FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 
 
+# *********************
+#     Env Variables    
+# *********************
+
+ARG USERNAME=caio.rosa
+ARG USER_UID=10399
+ARG USER_GID=1000
+ARG USER_GNAME=recod
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+
 # **********************************
 #   System-level Package Management  
 # **********************************
@@ -32,18 +44,6 @@ RUN rm -rf /var/lib/apt/lists/* && \
 # Install Python packages
 COPY requirements.txt /build/requirements.txt
 RUN pip install -r /build/requirements.txt
-
-
-# *********************
-#     Env Variables    
-# *********************
-
-ARG USERNAME=caio.rosa
-ARG USER_UID=10399
-ARG USER_GID=1000
-ARG USER_GNAME=recod
-
-ARG DEBIAN_FRONTEND=noninteractive
 
 
 # **********************
