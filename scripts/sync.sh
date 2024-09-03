@@ -144,7 +144,8 @@ main() {
     # -v: verbose
     # -z: compress file data during the transfer
     # -h: human-readable output
-    sync_opts="-rltDvzh"
+    # --fuzzy: find similar file names during the syncing process
+    sync_opts="-rltDvzh --fuzzy"
 
     # prints the syncing folders
     echo "Syncing $local_path to $remote_server_path"
