@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # define default values
-DEFAULT_IMAGE_TAG="default-env"
-DEFAULT_DATA_DIR="/datasets"
+DEFAULT_IMAGE_TAG="default-env" # SHOULD BE CHANGED BASED ON PROJECT
+DEFAULT_DATA_DIR="/datasets"    # SHOULD BE CHANGED BASED ON PROJECT
 
 # these variables could be passed as environment variables
 IMAGE_TAG=${IMAGE_TAG:-$DEFAULT_IMAGE_TAG}

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # define default values
-DEFAULT_IMAGE_TAG="default-env"
+DEFAULT_IMAGE_TAG="default-env" # SHOULD BE CHANGED BASED ON PROJECT
 DOCKERFILE="Dockerfile"
 
 # these variables could be passed as environment variables
