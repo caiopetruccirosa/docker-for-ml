@@ -6,7 +6,8 @@ DEFAULT_DATA_DIR="/datasets"    # SHOULD BE CHANGED BASED ON PROJECT
 
 # these variables could be passed as environment variables
 IMAGE_TAG=${IMAGE_TAG:-$DEFAULT_IMAGE_TAG}
-CONTAINER_NAME=${IMAGE_TAG}-container
+HOSTNAME=$(hostname)
+CONTAINER_NAME=${IMAGE_TAG}-container-${HOSTNAME}
 PORT=${PORT:-4321}
 DATA_DIR=${DATA_DIR:-$DEFAULT_DATA_DIR}
 WORK_DIR=${WORK_DIR:-$PWD}
@@ -19,6 +20,7 @@ exec docker run \
     -v "$WORK_DIR":/workspace \
     -v "$DATA_DIR":/datasets \
     -d -it --rm \
+    --userns=host \
     --name "$CONTAINER_NAME" \
     "$IMAGE_TAG"
     bash
