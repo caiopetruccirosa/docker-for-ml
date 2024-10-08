@@ -155,9 +155,9 @@ main() {
     # from the syncing process. if the file does not exist, it syncs
     # the entire local folder.
     if [ -e $exclude_file_path ]; then
-        /usr/bin/rsync $sync_opts --chown $chown_opts --include="**/.env" --exclude-from "$exclude_file_path" $local_folder $remote_server_path
+        rsync $sync_opts --chown $chown_opts --include="**/.env" --exclude-from "$exclude_file_path" $local_folder $remote_server_path
     else
-        /usr/bin/rsync $sync_opts --chown $chown_opts --include="**/.env" $local_folder $remote_server_path
+        rsync $sync_opts --chown $chown_opts --include="**/.env" $local_folder $remote_server_path
     fi
 }
 
